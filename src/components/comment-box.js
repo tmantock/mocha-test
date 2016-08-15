@@ -7,8 +7,10 @@ class CommentBox extends Component {
     this.state = { comment: '' };
   }
 
-  onSubmitClick(event) {
+  handleSubmit(event) {
     event.preventDefault();
+
+    this.setState({ comment: '' });
   }
 
   handleChange(event) {
@@ -17,10 +19,10 @@ class CommentBox extends Component {
 
   render(){
     return (
-      <div className="comment-box">
+      <form onSubmit={this.handleSubmit.bind(this)} className="comment-box">
         <textarea rows="3" value={this.state.comment} onChange={this.handleChange.bind(this)} />
-        <button onClick={this.onSubmitClick.bind(this)}>Submit</button>
-      </div>
+        <button action="submit">Submit</button>
+      </form>
     );
   }
 }
