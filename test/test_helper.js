@@ -12,10 +12,10 @@ global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 global.window = global.document.defaultView;
 const $ = jquery(global.window);
 // Build 'renderComponent' helper that should render a given React ComponentClass
-function renderComponent(ComponentClass) {
+function renderComponent(ComponentClass, props, state) {
   const componentInstance = TestUtils.renderIntoDocument(
-    <Provider store={createStore(reducers)}>
-      <ComponentClass />
+    <Provider store={createStore(reducers, state)}>
+      <ComponentClass {...props} />
     </Provider>
   );
 
